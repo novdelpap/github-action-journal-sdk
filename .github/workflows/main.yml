@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'input.scm'
+jobs:
+  execute-input:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    services:
+      journal_sdk:
+        image: ghcr.io/sandialabs/sync-journal/journal-sdk:1.0.1
+        volumes:
+          - ${{ github.workspace }}
+        ports:
+          - 80:80
+    steps:
+      - name: clone repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: run input on journal
+        run: |
+           curl -X POST http://localhost/interface -d "$(cat input.scm)" > sdk-output
+      - name: push output back to repo
+        uses: stefanzweifel/git-auto-commit-action@v5
