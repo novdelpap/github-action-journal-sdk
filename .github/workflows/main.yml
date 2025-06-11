@@ -16,6 +16,7 @@ jobs:
           - ${{ github.workspace }}/db:/srv/db
         ports:
           - 80:80
+        options: --name journal_sdk
     steps:
       - name: clone repo
         uses: actions/checkout@v4
