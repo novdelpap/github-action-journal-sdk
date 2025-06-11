@@ -1,1 +1,1 @@
-"Installed record interface"
+(error 'authentication-failure "Could not identify as self")
