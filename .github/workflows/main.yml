@@ -13,7 +13,7 @@ jobs:
       journal_sdk:
         image: ghcr.io/sandialabs/sync-journal/journal-sdk:1.0.1
         volumes:
-          - ${{ github.workspace }}
+          - ${{ github.workspace }}/db:/srv/db
         ports:
           - 80:80
     steps:
