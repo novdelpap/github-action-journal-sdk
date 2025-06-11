@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - main
+      - on-demand-ledger
     paths:
       - 'input.scm'
 jobs:
@@ -17,11 +17,20 @@ jobs:
         ports:
           - 80:80
         options: --name journal_sdk
+      cryptography:
+        image: ghcr.io/sandialabs/sync-services/cryptography:1.0.0
+        ports:
+          - 8887:80
     steps:
       - name: clone repo
         uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
+      - name: restart journal sdk
+        #restart journal sdk after volumes have been checked out
+        uses: docker://docker
+        with:
+          args: docker restart journal_sdk
       - name: run input on journal
         run: |
            curl -X POST http://localhost/interface -d "$(cat input.scm)" > sdk-output
