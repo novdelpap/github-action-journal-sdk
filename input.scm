@@ -1,1 +1,1 @@
-(*local* "sdkpw" (ledger-get (*state* documents arxiv the-synchronic-web)))
+(*local* "sdkpw" (ledger-index))
