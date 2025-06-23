@@ -1,20 +1,11 @@
-body {
-	font-family: 'Tahoma', sans-serif;
-}
-
-input[type=number] {
-  width: 3em;
-  padding: 0.5em;
-  border: 0.2em solid #005073;
-  border-radius: 1em;
+p {
+  display: inline-block; /* Makes the paragraph behave like an inline element */
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #333;
   text-align: center;
-  color: #005073;
-  -webkit-appearance: textfield;
-     -moz-appearance: textfield;
-          appearance: textfield;
-  margin: 0;
-}
-input[type=number]::-webkit-inner-spin-button {
-  opacity: 1;
-  background: blue;
+  font-size: 14px;
+  font-family: 'Tahoma', sans-serif;
 }
